@@ -1,4 +1,4 @@
-Make your own website in blazor [blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor), and publish as mta resource!
+Make your own website in [blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor), and publish as mta resource!
 
 ![image](https://i.imgur.com/LNt9oCx.png)
 
