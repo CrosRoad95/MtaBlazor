@@ -11,9 +11,16 @@ namespace MtaBlazor.Services
     {
         private readonly IJSRuntime jSRuntime;
         public event Action<string, string> OnValueChange;
+        private bool bridgeReady = false;
+
         public Bridge(IJSRuntime jSRuntime)
         {
             this.jSRuntime = jSRuntime;
+        }
+        public async Task InitializeAsync()
+        {
+            await jSRuntime.InvokeVoidAsync("initializeBridge", DotNetObjectReference.Create(this));
+            bridgeReady = true;
         }
 
         [JSInvokable]
@@ -32,18 +39,18 @@ namespace MtaBlazor.Services
                 return false;
             }
             string json = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(base64));
-            SetValue(key, json);
+            OnValueChange?.Invoke(key, json);
             return true;
         }
 
-        public void SetValue(string key, string value)
+        public void Call(params object[] vs)
         {
-            OnValueChange?.Invoke(key, value);
+            jSRuntime.InvokeVoidAsync("callFunction", vs);
         }
 
-        public async Task InitializeAsync()
+        public void CallServer(params object[] vs)
         {
-            await jSRuntime.InvokeVoidAsync("initializeBridge", DotNetObjectReference.Create(this));
+            jSRuntime.InvokeVoidAsync("callServerFunction", vs);
         }
     }
 }

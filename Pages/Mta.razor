@@ -3,9 +3,18 @@
 @page "/mta"
 
 <h3>Mta @Test</h3>
+<h3>from server: @ServerValue</h3>
 
+<button @onclick='() => Bridge.Call("testClient", 1,"2", new { test = "testValue" }, new List<string>() { "a", "b", "c" })'>test client</button>
+<button @onclick='() => Bridge.CallServer("testServer", 1,"2", new { test = "testValue" }, new List<string>() { "a", "b", "c" })'>test server</button>
 @code
 {
+    [CascadingParameter(Name = "Bridge")]
+    public Bridge Bridge { get; set; }
+
     [MtaValue("test")]
     public int Test { get; set; } = 10;
+
+    [MtaValue("testServer")]
+    public int ServerValue { get; set; } = 10;
 }
