@@ -2,19 +2,21 @@
 @inherits MtaBase
 @page "/mta"
 
-<h3>Mta @Test</h3>
-<h3>from server: @ServerValue</h3>
+<h3>Client tick: @ClientTick</h3>
+<h3>Server tick: @ServerTick</h3>
+<div>
+    <input type="text" @bind-value:event="oninput" @bind-value="Text" />
+    <button @onclick='() => Bridge.Call("outputChatBox", Text)'>Execute: outputChatBox("@Text")</button>
+</div>
 
-<button @onclick='() => Bridge.Call("testClient", 1,"2", new { test = "testValue" }, new List<string>() { "a", "b", "c" })'>test client</button>
-<button @onclick='() => Bridge.CallServer("testServer", 1,"2", new { test = "testValue" }, new List<string>() { "a", "b", "c" })'>test server</button>
+<button @onclick='() => Bridge.CallServer("getServerTick", 1,"2", new { test = "testValue" }, new List<string>() { "a", "b", "c" })'>Update server tick</button>
 @code
 {
-    [CascadingParameter(Name = "Bridge")]
-    public Bridge Bridge { get; set; }
+    public string Text { get; set; } = "";
 
-    [MtaValue("test")]
-    public int Test { get; set; } = 10;
+    [MtaValue("clientTick")]
+    public int ClientTick { get; set; } = 0;
 
-    [MtaValue("testServer")]
-    public int ServerValue { get; set; } = 10;
+    [MtaValue("serverTick")]
+    public int ServerTick { get; set; } = 0;
 }

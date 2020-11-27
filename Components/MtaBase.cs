@@ -12,9 +12,10 @@ namespace MtaBlazor.Components
 {
     public class MtaBase : LayoutComponentBase
     {
-        [Inject] Bridge Bridge { get; set; }
+        [Inject] public Bridge Bridge { get; set; }
         private readonly IEnumerable<PropertyInfo> properties;
         private readonly Dictionary<string, List<PropertyInfo>> propertiesByName = new Dictionary<string, List<PropertyInfo>>();
+
         public MtaBase()
         {
             properties = GetType().GetProperties().Where(prop => prop.IsDefined(typeof(MtaValueAttribute), false));

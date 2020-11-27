@@ -6,8 +6,7 @@ window.initializeBridge = (dotNetBridge) => {
     window.bridge = dotNetBridge;
     bridge = dotNetBridge
     if (typeof mta !== "undefined") {
-        console.log("Mta Blazor ready");
-        mta.triggerEvent("onBlazorReady")
+        mta.triggerEvent("onInternalBlazorReady")
     }
 }
 

@@ -3,7 +3,6 @@
 end
 
 addEvent("blazorCallFunction", true)
-addEventHandler("blazorCallFunction", resourceRoot, function(func, data)
-	iprint("call", func, data)
-	call(getResourceFromName("MtaBlazorHelper"), func, client, data)
+addEventHandler("blazorCallFunction", resourceRoot, function(func, ...)
+	call(getResourceFromName("MtaBlazorHelper"), func, client, ...)
 end)
