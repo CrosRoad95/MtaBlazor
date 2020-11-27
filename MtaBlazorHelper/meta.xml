@@ -1,0 +1,6 @@
+<meta>
+	<script src="c.lua" type="client" />
+	<script src="s.lua" type="server" />
+	<export function="outputChatBox" type="client"/>
+	<export function="getServerTick" type="server"/>
+</meta>
