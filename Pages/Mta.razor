@@ -1,0 +1,11 @@
+﻿@layout MtaLayout
+@inherits MtaBase
+@page "/mta"
+
+<h3>Mta @Test</h3>
+
+@code
+{
+    [MtaValue("test")]
+    public int Test { get; set; } = 10;
+}
