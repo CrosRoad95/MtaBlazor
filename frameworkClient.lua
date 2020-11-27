@@ -4,7 +4,10 @@ local blazorReady = false
 
 addEvent("onBlazorBrowserReady")
 addEvent("onBlazorReady")
+
 addEvent("setPlayerBlazorValue", true)
+addEvent("blazorNavigate", true)
+
 local window = guiCreateWindow( 200, 50, screenWidth, screenHeight, "Mta Blazor", false )
 local browser = guiCreateBrowser( 0, 28, screenWidth, screenHeight, true, false, false, window )
 local blazorBrowser = guiGetBrowser( browser )
@@ -63,6 +66,11 @@ function setValue(key, value)
 	callBridgeFunction("SetValue", key, value)
 end
 
+function navigate(url)
+	callBridgeFunction("NavigateTo", url)
+end
+
 addEventHandler("setPlayerBlazorValue", localPlayer, setValue)
+addEventHandler("blazorNavigate", localPlayer, navigate)
 
 setDevelopmentMode(true, true)

@@ -12,6 +12,7 @@ $metaXmlContent = $metaXmlContent + "<meta>" + $nl
 $metaXmlContent = $metaXmlContent + "`t<script src='_framework\frameworkClient.lua' type='client'/>" + $nl
 $metaXmlContent = $metaXmlContent + "`t<script src='_framework\frameworkServer.lua' type='server'/>" + $nl
 $metaXmlContent = $metaXmlContent + "`t<export function='setValue' type='shared' />" + $nl
+$metaXmlContent = $metaXmlContent + "`t<export function='navigate' type='shared' />" + $nl
 
 for ($i=0; $i -lt $files.Count; $i++) {
 	$fileName = $files[$i].fullName

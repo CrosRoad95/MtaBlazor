@@ -4,6 +4,7 @@
 
 <h3>Client tick: @ClientTick</h3>
 <h3>Server tick: @ServerTick</h3>
+<button @onclick='() => Bridge.NavigateTo("counter")'>nav</button>
 <div>
     <input type="text" @bind-value:event="oninput" @bind-value="Text" />
     <button @onclick='() => Bridge.Call("outputChatBox", Text)'>Execute: outputChatBox("@Text")</button>

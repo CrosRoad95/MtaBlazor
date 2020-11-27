@@ -12,15 +12,24 @@ namespace MtaBlazor.Services
         private readonly IJSRuntime jSRuntime;
         public event Action<string, string> OnValueChange;
         private bool bridgeReady = false;
+        private readonly NavigationManager navigationManager;
 
-        public Bridge(IJSRuntime jSRuntime)
+        public Bridge(IJSRuntime jSRuntime, NavigationManager navigationManager)
         {
             this.jSRuntime = jSRuntime;
+            this.navigationManager = navigationManager;
         }
+
         public async Task InitializeAsync()
         {
             await jSRuntime.InvokeVoidAsync("initializeBridge", DotNetObjectReference.Create(this));
             bridgeReady = true;
+        }
+
+        [JSInvokable]
+        public void NavigateTo(string url)
+        {
+            navigationManager.NavigateTo(url);
         }
 
         [JSInvokable]

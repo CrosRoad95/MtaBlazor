@@ -9,3 +9,8 @@ addEventHandler("onBlazorReady", root, function()
 		exports.blazor:setValue("clientTick",getTickCount())
 	end,500,0)
 end)
+
+addCommandHandler("navigate", function(cmd, url)
+	exports.blazor:navigate(url)
+	outputChatBox("navigate: "..url)	
+end)
